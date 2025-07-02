@@ -1,0 +1,286 @@
+.settings-container {
+  position: fixed;
+  right: 30px;
+  bottom: 95px;
+  z-index: 1000;
+}
+
+.settings-button {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #667eea 10%, #ffffff 90%);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  opacity: 0.9;
+}
+
+.settings-button:hover {
+  /* background: linear-gradient(135deg, #ffffff 10%, #667eea 90%); */
+  /* 호버 시 회전 효과 */
+  transform: translateY(-2px); 
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+}
+
+.settings-button:active {
+  transform: translateY(0);
+}
+
+.settings-button:focus {
+  outline: none;
+}
+
+/* 설정 메뉴 스타일 */
+.settings-menu {
+  position: absolute;
+  bottom: 60px;
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  min-width: 180px;
+  padding: 8px 0;
+  animation: slideUp 0.2s ease-out;
+  border: 1px solid #e1e5e9;
+}
+
+.settings-menu-item {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #333;
+  transition: background-color 0.2s ease;
+}
+
+.settings-menu-item:hover {
+  background-color: #f5f5f5;
+}
+
+.menu-icon {
+  width: 16px;
+  height: 16px;
+  color: #667eea;
+}
+
+/* 언어 메뉴 스타일 */
+.language-menu-item {
+  position: relative;
+  padding: 0 !important;
+}
+
+.language-toggle-btn {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #333;
+  transition: background-color 0.2s ease;
+}
+
+.language-toggle-btn:hover {
+  background-color: #f5f5f5;
+}
+
+.language-toggle-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chevron-icon {
+  width: 12px;
+  height: 12px;
+  color: #999;
+  transition: transform 0.2s ease;
+}
+
+.chevron-icon.rotated {
+  transform: rotate(90deg);
+}
+
+.language-submenu {
+  position: absolute;
+  right: 100%;
+  top: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 120px;
+  padding: 4px 0;
+  animation: slideRight 0.2s ease-out;
+  border: 1px solid #e1e5e9;
+  z-index: 1001;
+}
+
+.language-option {
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #333;
+  transition: background-color 0.2s ease;
+}
+
+.language-option:hover {
+  background-color: #f5f5f5;
+}
+
+.language-option.active {
+  background-color: #667eea;
+  color: white;
+}
+
+.check-mark {
+  font-size: 12px;
+  color: white;
+}
+
+/* 다크모드 언어 메뉴 스타일 */
+:global(body.dark-mode) .language-toggle-btn {
+  color: #e2e8f0;
+}
+
+:global(body.dark-mode) .language-toggle-btn:hover {
+  background-color: #4a5568;
+}
+
+:global(body.dark-mode) .language-submenu {
+  background: #2d3748;
+  border-color: #4a5568;
+}
+
+:global(body.dark-mode) .language-option {
+  color: #e2e8f0;
+}
+
+:global(body.dark-mode) .language-option:hover {
+  background-color: #4a5568;
+}
+
+:global(body.dark-mode) .language-option.active {
+  background-color: #667eea;
+  color: white;
+}
+
+/* 슬라이드 오른쪽 애니메이션 */
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 다크모드 스타일 */
+:global(body.dark-mode) .settings-menu {
+  background: #2d3748;
+  border-color: #4a5568;
+}
+
+:global(body.dark-mode) .settings-menu-item {
+  color: #e2e8f0;
+}
+
+:global(body.dark-mode) .settings-menu-item:hover {
+  background-color: #4a5568;
+}
+
+:global(body.dark-mode) .language-toggle-content {
+  color: #e2e8f0;
+}
+
+:global(body.dark-mode) .settings-button {
+  background: linear-gradient(135deg, #4a5568 10%, #2d3748 90%);
+}
+
+:global(body.dark-mode) .settings-button:hover {
+  background: linear-gradient(135deg, #2d3748 10%, #4a5568 90%);
+}
+
+/* 슬라이드 업 애니메이션 */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .settings-container {
+    right: 20px;
+    bottom: 80px;
+  }
+  
+  .settings-button {
+    width: 45px;
+    height: 45px;
+    font-size: 16px;
+  }
+  
+  .settings-menu {
+    bottom: 55px;
+    min-width: 160px;
+  }
+}
+
+/* 기존 애니메이션 효과 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+}
+
+.settings-button {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* 설정 아이콘 회전 애니메이션 */
+.settings-button:hover .fa-cog {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} 

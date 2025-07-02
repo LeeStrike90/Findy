@@ -1,0 +1,563 @@
+/* ==============================================
+   확장 가능한 뉴스 카드 스타일
+   ============================================== */
+
+.expandable-news-container {
+  width: 100%;
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.expandable-news-container.expanded {
+  background: var(--background-white);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 20px var(--shadow-medium);
+  border: 1px solid var(--border-light);
+}
+
+body.dark-mode .expandable-news-container.expanded {
+  background: var(--background-light);
+  border-color: #4A5568;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* 왼쪽 카드 영역 - 리스트 뉴스 카드 스타일 적용 */
+.expandable-news-card {
+  width: 70%;
+  background: var(--background-white);
+  border-radius: 8px;
+  padding: 1rem; /* 높이를 줄이기 위해 패딩 축소 */
+  border: 1px solid #e0e0e0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  /* display: flex; */
+  flex-direction: column;
+  margin: 0 auto 0.8rem auto; /* 카드 간 간격도 줄임 */
+  display: block; /* grid에서 block으로 변경 */
+  z-index: 1; /* 기본 z-index 설정 */
+}
+
+/* collapsed 클래스는 더 이상 사용하지 않음 - NewsListContainer에서 처리 */
+
+body.dark-mode .expandable-news-card {
+  background: var(--background-white);
+  border-color: #4A5568;
+}
+
+.expandable-news-card:not(.collapsed):hover {
+  transform: translateY(-3px); /* 조금 더 위로 올라가도록 */
+  box-shadow: 0 6px 20px var(--shadow-light); /* 그림자 강화 */
+  border-color: var(--primary-blue);
+  z-index: 10; /* 호버 시 다른 요소들 위로 올라오도록 */
+}
+
+body.dark-mode .expandable-news-card:not(.collapsed):hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); /* 다크모드에서 그림자 강화 */
+  border-color: #90CDF4;
+}
+
+/* 확장 가능한 카드 레이아웃 */
+.expandable-card-layout {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* 왼쪽 이미지 영역 */
+.expandable-card-image {
+  flex-shrink: 0;
+  width: 195px;
+  height: 195px; /* 내용 요약 글 위치까지 높이 증가 */
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--background-light);
+  border: 1px solid var(--border-light);
+}
+
+body.dark-mode .expandable-card-image {
+  background: #4A5568;
+  border-color: #5A6578;
+}
+
+.expandable-news-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.expandable-news-card:hover .expandable-news-image {
+  transform: scale(1.05);
+}
+
+/* 리스트 뉴스 콘텐츠 스타일 */
+.list-news-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem; /* 높이를 줄이기 위해 간격 축소 */
+  flex: 1;
+  min-width: 0; /* flex item이 축소될 수 있도록 */
+}
+
+.list-news-main {
+  flex: 1;
+}
+
+/* 카드 헤더 */
+.expandable-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem; /* 높이를 줄이기 위해 마진 축소 */
+}
+
+.news-source {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.source-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border-light);
+}
+
+.source-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.news-category-badge {
+  background: linear-gradient(45deg, var(--primary-blue), var(--light-blue));
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+/* 리스트 뉴스 제목 */
+.list-news-title {
+  font-size: 1.4rem; /* 폰트 크기는 유지 */
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3; /* 줄 높이를 줄여서 높이 축소 */
+  margin-bottom: 0.5rem; /* 높이를 줄이기 위해 마진 축소 */
+  transition: color 0.3s ease;
+  /* 제목 말줄임표 처리 */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* collapsed 제목 스타일은 NewsListContainer.css에서 처리 */
+
+/* 리스트 뉴스 미리보기 */
+.list-news-preview {
+  color: #555;
+  line-height: 1.4; /* 높이를 줄이기 위해 줄 간격 축소 */
+  font-size: 1rem; /* 폰트 크기는 유지 */
+  transition: color 0.3s ease;
+  margin-bottom: 0.3rem; /* 하단 마진 추가로 간격 조정 */
+  margin-top: 0.3rem; /* 상단 마진 추가로 간격 조정 */
+}
+
+body.dark-mode .list-news-preview {
+  color: rgba(226, 232, 240, 0.8);
+}
+
+/* collapsed 미리보기 스타일은 NewsListContainer.css에서 처리 */
+
+/* 카드 푸터 */
+.expandable-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.3rem;
+}
+
+.news-date {
+  color: #666;
+  font-weight: 500;
+  font-size: 0.85rem;
+  transition: color 0.3s ease;
+}
+
+body.dark-mode .news-date {
+  color: var(--text-secondary);
+}
+
+/* 토글 버튼 컨테이너 - 날짜 아래 중앙 배치 */
+.toggle-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.4rem;
+}
+
+.toggle-btn {
+  background: linear-gradient(45deg, var(--primary-blue), var(--light-blue));
+  color: white;
+  border: none;
+  border-radius: 18px;
+  padding: 0.35rem 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.75rem;
+  font-weight: 600;
+  box-shadow: 0 2px 6px var(--shadow-light);
+}
+
+.toggle-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-medium);
+}
+
+.toggle-text {
+  font-size: 0.7rem;
+}
+
+body.dark-mode .toggle-btn {
+  background: linear-gradient(45deg, #90CDF4, #87CEEB);
+  color: #1A202C;
+}
+
+/* ==============================================
+   확장된 콘텐츠 직접 렌더링 스타일
+   ============================================== */
+
+.expanded-content-direct {
+  width: 100%;
+  /* max-height: 80vh 제거 */
+  /* overflow-y: auto 제거 */
+  background: var(--background-white);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px var(--shadow-medium);
+  border: 1px solid var(--border-light);
+  min-width: 0; /* flex item이 축소될 수 있도록 */
+  word-wrap: break-word; /* 긴 단어 줄바꿈 */
+  overflow-wrap: break-word; /* 긴 단어 줄바꿈 */
+}
+
+body.dark-mode .expanded-content-direct {
+  background: var(--background-light);
+  border-color: #4A5568;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* 확장된 콘텐츠 헤더 */
+.expanded-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+body.dark-mode .expanded-header {
+  border-bottom-color: #4A5568;
+}
+
+/* 확장된 콘텐츠 제목 */
+.expanded-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+  margin: 0;
+  flex: 1;
+  margin-right: 1rem;
+}
+
+/* 닫기 버튼 */
+.close-btn {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a5a);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+  flex-shrink: 0;
+}
+
+.close-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.5);
+}
+
+/* 확장된 콘텐츠 이미지 */
+.expanded-image-container {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px var(--shadow-medium);
+}
+
+body.dark-mode .expanded-image-container {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.expanded-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+/* 확장된 콘텐츠 메타 정보 */
+.expanded-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--background-light);
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+}
+
+body.dark-mode .expanded-meta {
+  background: #4A5568;
+  border-color: #718096;
+}
+
+/* 확장된 콘텐츠 언론사 정보 */
+.expanded-source {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.expanded-source-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border-light);
+}
+
+.expanded-source-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+/* 확장된 콘텐츠 카테고리 */
+.expanded-category {
+  background: linear-gradient(45deg, var(--primary-blue), var(--light-blue));
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+/* 확장된 콘텐츠 날짜 */
+.expanded-date {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* 확장된 콘텐츠 본문 */
+.expanded-content-text {
+  margin-bottom: 2rem;
+}
+
+.expanded-full-content {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
+.content-paragraph {
+  margin-bottom: 1.5rem;
+}
+
+.content-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+/* 확장된 콘텐츠 키워드 */
+.expanded-keywords {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: var(--background-light);
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+}
+
+body.dark-mode .expanded-keywords {
+  background: #4A5568;
+  border-color: #718096;
+}
+
+.keywords-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.keywords-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.keyword-tag {
+  background: linear-gradient(45deg, var(--primary-blue), var(--light-blue));
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+body.dark-mode .keyword-tag {
+  background: linear-gradient(45deg, #90CDF4, #87CEEB);
+  color: #1A202C;
+}
+
+.keyword-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-medium);
+}
+
+body.dark-mode .keyword-tag:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* 확장된 콘텐츠 액션 버튼 */
+.expanded-actions {
+  display: flex;
+  justify-content: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-light);
+}
+
+body.dark-mode .expanded-actions {
+  border-top-color: #4A5568;
+}
+
+.original-link-btn {
+  background: linear-gradient(45deg, var(--primary-blue), var(--light-blue));
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px var(--shadow-medium);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.original-link-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px var(--shadow-heavy);
+}
+
+/* 스크롤바 스타일 */
+/* 스크롤바 스타일 제거 - 페이지 스크롤 사용 */
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+  .expandable-news-container.expanded {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .expanded-content-direct {
+    max-height: 70vh;
+  }
+  
+  .expanded-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .expandable-news-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .expandable-news-card {
+    width: 100%;
+  }
+
+  .expandable-card-layout {
+    gap: 0.8rem;
+  }
+
+  .expandable-card-image {
+    width: 100px;
+    height: 100px; /* 모바일에서도 정사각형으로 증가 */
+  }
+  
+  .list-news-title {
+    font-size: 1.2rem;
+  }
+  
+  .list-news-preview {
+    font-size: 0.9rem;
+  }
+  
+  .expanded-content-direct {
+    padding: 1.5rem;
+    max-height: 60vh;
+  }
+  
+  .expanded-title {
+    font-size: 1.3rem;
+  }
+  
+  .expanded-meta {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .toggle-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .toggle-text {
+    font-size: 0.8rem;
+  }
+} 

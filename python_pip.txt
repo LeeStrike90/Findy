@@ -1,0 +1,16 @@
+pip install
+
+requests             웹 요청용 라이브러리
+beautifulsoup4       HTML 파싱용
+konlpy               형태소 분석 (Java 필요)
+JPype1               konlpy 내부 Java 연동 도구
+scikit-learn         TF-IDF 등 벡터화 도구 포함
+numpy                sklearn 내부에서 사용됨
+networkx             파이썬의 그래프 이론 및 네트워크 분석 라이브러리
+pymongo              MongoDB
+komoran              komoran
+selenium             웹 브라우저 자동 조작
+
+npm install @fortawesome/fontawesome-svg-core
+npm install @fortawesome/free-solid-svg-icons  
+npm install @fortawesome/react-fontawesome

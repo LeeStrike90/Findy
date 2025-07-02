@@ -1,0 +1,427 @@
+/* ContactForm 스타일 */
+.contact-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-content {
+  max-width: 800px;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  padding: 2.5rem;
+  margin: 0 1rem;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 다크모드 - 컨테이너 */
+body.dark-mode .contact-content {
+  background-color: #2D3748;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  color: #E2E8F0;
+}
+
+.contact-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+/* 다크모드 - 제목 */
+body.dark-mode .contact-title {
+  color: #E2E8F0;
+}
+
+.contact-description {
+  color: #666;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  transition: color 0.3s ease;
+}
+
+/* 다크모드 - 설명 */
+body.dark-mode .contact-description {
+  color: #A0AEC0;
+}
+
+/* 폼 스타일 */
+.contact-form {
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+/* 다크모드 - 레이블 */
+body.dark-mode .form-group label {
+  color: #E2E8F0;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s, background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 다크모드 - 입력 필드 */
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea {
+  background-color: #4A5568;
+  border-color: #718096;
+  color: #E2E8F0;
+}
+
+body.dark-mode .form-group input::placeholder,
+body.dark-mode .form-group textarea::placeholder {
+  color: #A0AEC0;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #1a73e8;
+}
+
+/* 다크모드 - 입력 필드 포커스 */
+body.dark-mode .form-group input:focus,
+body.dark-mode .form-group textarea:focus {
+  border-color: #90CDF4;
+}
+
+.form-group input.error,
+.form-group textarea.error {
+  border-color: #d32f2f;
+}
+
+/* 다크모드 - 에러 입력 필드 */
+body.dark-mode .form-group input.error,
+body.dark-mode .form-group textarea.error {
+  border-color: #FC8181;
+}
+
+.error-message {
+  color: #d32f2f;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+/* 다크모드 - 에러 메시지 */
+body.dark-mode .error-message {
+  color: #FC8181;
+}
+
+.form-actions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.submit-button {
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 0.8rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+  background-color: #165db5;
+}
+
+/* 다크모드 - 제출 버튼 */
+body.dark-mode .submit-button {
+  background-color: #90CDF4;
+  color: #1A202C;
+}
+
+body.dark-mode .submit-button:hover {
+  background-color: #87CEEB;
+}
+
+.submit-button:disabled {
+  background-color: #a1c4f3;
+  cursor: not-allowed;
+}
+
+/* 다크모드 - 비활성 제출 버튼 */
+body.dark-mode .submit-button:disabled {
+  background-color: #4A5568;
+  color: #A0AEC0;
+}
+
+/* 오류 배너 */
+.error-banner {
+  background-color: #ffebee;
+  color: #d32f2f;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #d32f2f;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* 다크모드 - 에러 배너 */
+body.dark-mode .error-banner {
+  background-color: #553C3C;
+  color: #FC8181;
+  border-left-color: #FC8181;
+}
+
+/* 대체 제출 방법 */
+.fallback-notice {
+  margin-top: 2rem;
+  padding: 1.2rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px dashed #ddd;
+  text-align: center;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* 다크모드 - 대체 제출 방법 */
+body.dark-mode .fallback-notice {
+  background-color: #4A5568;
+  border-color: #718096;
+}
+
+.fallback-notice p {
+  margin-bottom: 1rem;
+  color: #666;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+/* 다크모드 - 대체 제출 방법 텍스트 */
+body.dark-mode .fallback-notice p {
+  color: #A0AEC0;
+}
+
+.fallback-button {
+  background-color: #f1f3f4;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+/* 다크모드 - 대체 버튼 */
+body.dark-mode .fallback-button {
+  background-color: #4A5568;
+  color: #E2E8F0;
+  border-color: #718096;
+}
+
+.fallback-button:hover {
+  background-color: #e8eaed;
+  border-color: #bbb;
+}
+
+/* 다크모드 - 대체 버튼 호버 */
+body.dark-mode .fallback-button:hover {
+  background-color: #718096;
+  border-color: #A0AEC0;
+}
+
+/* 성공 메시지 */
+.success-message {
+  background-color: #e8f5e9;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  margin: 2rem 0;
+  transition: background-color 0.3s ease;
+}
+
+/* 다크모드 - 성공 메시지 */
+body.dark-mode .success-message {
+  background-color: #2F5233;
+}
+
+.success-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1rem;
+  background-color: #4caf50;
+  color: white;
+  font-size: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+/* 다크모드 - 성공 아이콘 */
+body.dark-mode .success-icon {
+  background-color: #68D391;
+  color: #1A202C;
+}
+
+.success-message h3 {
+  color: #2e7d32;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+/* 다크모드 - 성공 메시지 제목 */
+body.dark-mode .success-message h3 {
+  color: #68D391;
+}
+
+.success-message p {
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+/* 다크모드 - 성공 메시지 텍스트 */
+body.dark-mode .success-message p {
+  color: #A0AEC0;
+}
+
+/* 직접 이메일 안내 */
+.direct-email {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+/* 다크모드 - 직접 이메일 안내 */
+body.dark-mode .direct-email {
+  color: #A0AEC0;
+}
+
+.direct-email a {
+  color: #1a73e8;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+/* 다크모드 - 이메일 링크 */
+body.dark-mode .direct-email a {
+  color: #90CDF4;
+}
+
+.direct-email a:hover {
+  text-decoration: underline;
+}
+
+/* 추가 정보 */
+.contact-info {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+  border-left: 4px solid #1a73e8;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* 다크모드 - 연락처 정보 */
+body.dark-mode .contact-info {
+  background-color: #4A5568;
+  border-left-color: #90CDF4;
+}
+
+.contact-info h3 {
+  color: #333;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  transition: color 0.3s ease;
+}
+
+/* 다크모드 - 연락처 정보 제목 */
+body.dark-mode .contact-info h3 {
+  color: #E2E8F0;
+}
+
+.contact-info ul {
+  padding-left: 1.5rem;
+  margin: 0;
+}
+
+.contact-info li {
+  margin-bottom: 0.5rem;
+  color: #555;
+  line-height: 1.5;
+  transition: color 0.3s ease;
+}
+
+/* 다크모드 - 연락처 정보 리스트 */
+body.dark-mode .contact-info li {
+  color: #E2E8F0;
+}
+
+.contact-info a {
+  color: #1a73e8;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+/* 다크모드 - 연락처 정보 링크 */
+body.dark-mode .contact-info a {
+  color: #90CDF4;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .contact-content {
+    padding: 1.5rem;
+  }
+
+  .contact-title {
+    font-size: 1.5rem;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .submit-button {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .fallback-button {
+    margin-top: 0.5rem;
+    width: 100%;
+    max-width: 300px;
+  }
+} 

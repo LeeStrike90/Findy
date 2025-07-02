@@ -1,0 +1,59 @@
+1. 다운로드
+msi 로 다운로드
+https://www.mongodb.com/try/download/community
+다운 받은거 들어가다 complete선택
+쭉 next
+
+2. admin 추가
+MongoDB shell 들어가기
+
+use admin
+
+db.createUser({
+  user: "findyAdmin",
+  pwd: "findy1234",
+  roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+})
+
+mongod.cfg 파일에 
+security:
+  authorization: enabled 추가
+
+application.properties 에 아래 추가
+spring.data.mongodb.uri=mongodb://findyAdmin:findy1234@localhost:27017/findyDB?authSource=admin
+
+메서드명			역할 설명						반환 타입 예시
+findAll()			컬렉션 내 모든 문서 조회			List<T>
+findById(ID id)		ID 값으로 단일 문서 조회			Optional<T>
+save(T entity)		새 문서 저장 또는 기존 문서 수정		저장된 객체 T
+deleteById(ID id)		ID 값으로 문서 삭제				void
+delete(T entity)		문서 객체로 삭제					void
+existsById(ID id)		해당 ID 존재 여부 확인				boolean
+count()			컬렉션 내 문서 개수 조회			long
+
+
+docker exec -it findymongo mongosh -u mongoadmin -p 1234 --authenticationDatabase admin
+이게 안되면 유저가 없거나 그런거일수있으니 그냥 들어가보기
+docker exec -it findymongo mongosh --port 27017
+
+rs.initiate({
+  _id: "rs0",
+  members: [
+    { _id: 0, host: "findymongo:27017" }
+  ]
+})
+
+rs.status()
+
+use admin
+
+db.createUser({
+  user: "mongoadmin",
+  pwd: "1234",
+  roles: [ { role: "root", db: "admin" } ]
+})
+
+
+엘라스틱 확인
+https://localhost:9200/_cat/indices?v
+https://localhost:9200/newsdata.newsdata/_search?pretty&size=1000

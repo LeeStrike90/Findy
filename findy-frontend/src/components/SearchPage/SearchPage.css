@@ -1,0 +1,686 @@
+/* ==============================================
+   검색 페이지 스타일 - 확장 가능한 뉴스 카드 지원
+   ============================================== */
+
+.search-page {
+    width: 100%;
+    max-width: 100%;
+    min-height: 100vh;
+    transition: all 0.3s ease;
+    overflow-x: hidden; /* 가로 스크롤 방지 */
+}
+
+.search-page.news-expanded {
+    width: 100%;
+    max-width: 100%;
+    /* width: 100vw 제거 */
+    /* margin-left: calc(-50vw + 50%) 제거 */
+    overflow-x: hidden; /* 가로 스크롤 방지 */
+}
+
+.search-content {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box; /* 패딩 포함 계산 */
+}
+
+.search-page.news-expanded .search-content {
+    max-width: 95%;
+    padding: 1rem 2rem;
+    box-sizing: border-box; /* 패딩 포함 계산 */
+}
+
+.search-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 0 auto;
+    /* background: linear-gradient(145deg, var(--background-white), var(--background-light));
+    border-radius: 20px;
+    border: 2px solid rgba(135, 206, 235, 0.3);
+    box-shadow: 0 8px 25px var(--shadow-light); */
+}
+
+.search-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+}
+
+.search-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin: 0;
+}
+/* 오탈자 수정 */
+.search-request-title{
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.re-search{
+    color: var(--primary-blue);
+    cursor: pointer;
+}
+
+/* AI 답변 섹션 */
+.ai-answer-section {
+    background: linear-gradient(145deg, var(--background-white), var(--background-light));
+    border-radius: 16px;
+    border: 2px solid rgba(135, 206, 235, 0.3);
+    box-shadow: 0 8px 25px var(--shadow-light);
+    margin: 1.5rem 1rem 2rem 0;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    width: 70%;
+    margin: 0 auto 1rem auto; /* 카드 자체를 중앙 정렬 */
+    display: block; /* grid에서 block으로 변경 */
+}
+
+body.dark-mode .ai-answer-section {
+    background: linear-gradient(145deg, var(--background-white), var(--background-light));
+    border-color: rgba(144, 205, 244, 0.3);
+    box-shadow: 0 8px 25px var(--shadow-light);
+}
+
+.ai-answer-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(135, 206, 235, 0.2);
+}
+
+body.dark-mode .ai-answer-header {
+    border-bottom-color: rgba(144, 205, 244, 0.2);
+}
+
+.ai-answer-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ai-answer-content {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.ai-answer-placeholder {
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.ai-answer-placeholder p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.ai-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #1a73e8;
+    font-weight: 500;
+}
+
+body.dark-mode .ai-loading {
+    color: #90CDF4;
+}
+
+.ai-loading::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(26, 115, 232, 0.3);
+    border-top: 2px solid #1a73e8;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+body.dark-mode .ai-loading::before {
+    border-color: rgba(144, 205, 244, 0.3);
+    border-top-color: #90CDF4;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* AI 답변 토글 버튼 */
+.ai-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #f8f9ff, #e3f2fd);
+    border: 1px solid #e3f2fd;
+    color: #1a73e8;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.6rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(26, 115, 232, 0.1);
+}
+
+body.dark-mode .ai-toggle-btn {
+    background: linear-gradient(135deg, #2D3748, #4A5568);
+    border-color: #4A5568;
+    color: #90CDF4;
+    box-shadow: 0 2px 4px rgba(144, 205, 244, 0.1);
+}
+
+.ai-toggle-btn:hover {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    border-color: #1a73e8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(26, 115, 232, 0.2);
+}
+
+body.dark-mode .ai-toggle-btn:hover {
+    background: linear-gradient(135deg, #4A5568, #5A6578);
+    border-color: #90CDF4;
+    box-shadow: 0 4px 8px rgba(144, 205, 244, 0.2);
+}
+
+.ai-toggle-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(26, 115, 232, 0.1);
+}
+
+.ai-toggle-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.ai-toggle-btn:hover::before {
+    left: 100%;
+}
+
+.ai-toggle-icon {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.ai-toggle-btn[data-expanded="true"] .ai-toggle-icon {
+    transform: rotate(180deg);
+}
+
+.ai-toggle-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+/* 언론사별 카테고리 섹션 */
+.news-sources-section {
+    margin-top: 1rem;
+    padding: 1rem 0 1rem 0;
+    /* border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee; */
+}
+
+body.dark-mode .news-sources-section {
+    border-color: #4A5568;
+}
+
+.sources-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.2rem;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode .sources-title {
+    color: var(--text-primary);
+}
+
+.news-sources-grid {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.source-btn {
+    background: transparent;
+    color: #555;
+    border: 1px solid #e8e8e8;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+body.dark-mode .source-btn {
+    color: var(--text-primary);
+    border-color: #4A5568;
+}
+
+.source-btn:hover {
+    color: #1a73e8;
+    border-color: #1a73e8;
+    background: #f8f9ff;
+}
+
+body.dark-mode .source-btn:hover {
+    color: #90CDF4;
+    border-color: #90CDF4;
+    background: rgba(144, 205, 244, 0.1);
+}
+
+.source-btn.active {
+    color: #1a73e8;
+    font-weight: 600;
+    border-color: #1a73e8;
+    background: #f8f9ff;
+}
+
+body.dark-mode .source-btn.active {
+    color: #90CDF4;
+    border-color: #90CDF4;
+    background: rgba(144, 205, 244, 0.1);
+}
+
+.source-btn.active:after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #1a73e8;
+    border-radius: 2px 2px 0 0;
+}
+
+body.dark-mode .source-btn.active:after {
+    background: #90CDF4;
+}
+
+/* 검색 결과 */
+.search-results {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* 간격을 줄여서 확장된 뉴스가 더 자연스럽게 보이도록 */
+}
+
+/* 뉴스 리스트 컨테이너 스타일 */
+.news-list-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.news-list-item {
+    width: 100%;
+}
+
+/* 결과 없음 */
+.no-results {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(145deg, var(--background-white), var(--background-light));
+    border-radius: 20px;
+    border: 2px dashed rgba(135, 206, 235, 0.4);
+    transition: background 0.3s ease, border-color 0.3s ease;
+    width: 70%;
+    margin: 0 auto 1rem auto; /* 카드 자체를 중앙 정렬 */
+    display: block; /* grid에서 block으로 변경 */
+}
+
+body.dark-mode .no-results {
+    background: linear-gradient(145deg, var(--background-white), var(--background-light));
+    border-color: rgba(144, 205, 244, 0.4);
+}
+
+.no-results h3 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.no-results p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* 페이지네이션 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    padding: 1.5rem;
+}
+
+.pagination-btn {
+    background: linear-gradient(45deg, var(--primary-blue), var(--light-blue));
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px var(--shadow-medium);
+}
+
+body.dark-mode .pagination-btn {
+    background: linear-gradient(45deg, #90CDF4, #87CEEB);
+    color: #1A202C;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow-heavy);
+}
+
+body.dark-mode .pagination-btn:hover:not(:disabled) {
+    background: linear-gradient(45deg, #87CEEB, #90CDF4);
+    box-shadow: 0 6px 20px rgba(144, 205, 244, 0.4);
+}
+
+.pagination-btn:disabled {
+    background: rgba(135, 206, 235, 0.3);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+body.dark-mode .pagination-btn:disabled {
+    background: rgba(144, 205, 244, 0.3);
+}
+
+.first-last-btn {
+    font-size: 1.2rem;
+    font-weight: bold;
+    min-width: 3rem;
+}
+
+.pagination-numbers {
+    display: flex;
+    gap: 0.3rem;
+    margin: 0 1rem;
+}
+
+.pagination-number {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 2px solid rgba(135, 206, 235, 0.3);
+    padding: 0.6rem 1rem;
+    border-radius: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 45px;
+}
+
+body.dark-mode .pagination-number {
+    color: var(--text-primary);
+    border-color: rgba(144, 205, 244, 0.3);
+    background: transparent;
+}
+
+.pagination-number:hover {
+    color: var(--primary-blue);
+    border-color: rgba(107, 115, 255, 0.4);
+    background: rgba(107, 115, 255, 0.05);
+}
+
+body.dark-mode .pagination-number:hover {
+    color: #90CDF4;
+    border-color: rgba(144, 205, 244, 0.4);
+    background: rgba(144, 205, 244, 0.05);
+}
+
+.pagination-number.active {
+    background: linear-gradient(45deg, var(--primary-blue), var(--light-blue));
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 15px var(--shadow-medium);
+}
+
+body.dark-mode .pagination-number.active {
+    background: linear-gradient(45deg, #90CDF4, #87CEEB);
+    color: #1A202C;
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(144, 205, 244, 0.4);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1400px) {
+    .search-content {
+        max-width: 95%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .search-content {
+        max-width: 100%;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .search-content {
+        padding: 1rem;
+    }
+    
+    .search-header {
+        margin-bottom: 1.5rem;
+    }
+    
+    .search-title {
+        font-size: 1.5rem;
+    }
+    
+    .search-subtitle {
+        font-size: 1rem;
+    }
+    
+    .pagination {
+        flex-wrap: wrap;
+        gap: 0.3rem;
+        margin-top: 1.5rem;
+        padding: 1rem;
+    }
+    
+    .pagination-numbers {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        margin: 0.5rem 0 0 0;
+    }
+    
+    .pagination-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .pagination-number {
+        padding: 0.5rem 0.8rem;
+        min-width: 40px;
+        font-size: 0.9rem;
+    }
+}
+
+/* 날짜 선택기 스타일 */
+.date-picker-container {
+  position: relative;
+  display: inline-block;
+}
+
+.date-picker-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+  margin-top: 0.5rem;
+}
+
+body.dark-mode .date-picker-dropdown {
+  background: #2D3748;
+  border-color: #4A5568;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.date-picker-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  justify-content: flex-end;
+}
+
+.date-reset-btn,
+.date-close-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.date-reset-btn:hover,
+.date-close-btn:hover {
+  background: #f5f5f5;
+}
+
+body.dark-mode .date-reset-btn,
+body.dark-mode .date-close-btn {
+  background: #4A5568;
+  border-color: #718096;
+  color: #E2E8F0;
+}
+
+body.dark-mode .date-reset-btn:hover,
+body.dark-mode .date-close-btn:hover {
+  background: #718096;
+}
+
+/* react-datepicker 커스텀 스타일 */
+.react-datepicker {
+  border: none !important;
+  box-shadow: none !important;
+  font-family: inherit !important;
+}
+
+.react-datepicker__header {
+  background: #f8f9fa !important;
+  border-bottom: 1px solid #e9ecef !important;
+}
+
+body.dark-mode .react-datepicker__header {
+  background: #4A5568 !important;
+  border-bottom-color: #718096 !important;
+}
+
+.react-datepicker__current-month {
+  color: #333 !important;
+  font-weight: 600 !important;
+}
+
+body.dark-mode .react-datepicker__current-month {
+  color: #E2E8F0 !important;
+}
+
+.react-datepicker__day-name {
+  color: #666 !important;
+}
+
+body.dark-mode .react-datepicker__day-name {
+  color: #A0AEC0 !important;
+}
+
+.react-datepicker__day {
+  color: #333 !important;
+}
+
+body.dark-mode .react-datepicker__day {
+  color: #E2E8F0 !important;
+}
+
+.react-datepicker__day:hover {
+  background: #e3f2fd !important;
+}
+
+body.dark-mode .react-datepicker__day:hover {
+  background: #718096 !important;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range {
+  background: #1a73e8 !important;
+  color: white !important;
+}
+
+body.dark-mode .react-datepicker__day--selected,
+body.dark-mode .react-datepicker__day--in-selecting-range,
+body.dark-mode .react-datepicker__day--in-range {
+  background: #90CDF4 !important;
+  color: #1A202C !important;
+}
+
+@media (max-width: 768px) {
+  .date-picker-dropdown {
+    left: auto;
+    right: 0;
+  }
+  
+  .ai-toggle-btn {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 16px;
+  }
+  
+  .ai-toggle-icon {
+    font-size: 0.7rem;
+  }
+} 

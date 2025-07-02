@@ -1,0 +1,64 @@
+.scroll-to-top-button {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #667eea 10%, white 90%);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  opacity: 0.9;
+}
+
+.scroll-to-top-button:hover {
+  /* background: linear-gradient(135deg, #ffffff 10%, #667eea 90%); */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+}
+
+.scroll-to-top-button:active {
+  transform: translateY(0);
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); */
+}
+
+.scroll-to-top-button:focus {
+  outline: none;
+  /* box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3); */
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .scroll-to-top-button {
+    width: 45px;
+    height: 45px;
+    right: 20px;
+    bottom: 20px;
+    font-size: 16px;
+  }
+}
+
+/* 애니메이션 효과 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+}
+
+.scroll-to-top-button {
+  animation: fadeIn 0.3s ease-out;
+} 

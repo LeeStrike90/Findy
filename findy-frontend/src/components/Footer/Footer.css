@@ -1,0 +1,466 @@
+/* ==============================================
+   푸터 스타일 - 다크모드 지원 추가
+   ============================================== */
+
+   .footer {
+    background: linear-gradient(135deg, var(--text-primary), #1A202C);
+    color: white;
+    padding: 3rem 2rem 2rem;
+    margin-top: 4rem;
+    transition: background 0.3s ease;
+}
+
+/* 다크모드에서는 푸터가 더 어둡게 */
+body.dark-mode .footer {
+    background: linear-gradient(135deg, #0A0E1A, var(--background-light));
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 소셜 미디어 링크 */
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+}
+
+.social-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: 120px;
+    justify-content: center;
+}
+
+.social-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.social-btn:hover::before {
+    left: 100%;
+}
+
+.social-icon {
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.social-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Facebook 스타일 */
+.social-btn.facebook {
+    background: linear-gradient(135deg, #1877F2, #42A5F5);
+    color: white;
+    box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
+}
+
+.social-btn.facebook:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(24, 119, 242, 0.4);
+}
+
+.social-btn.facebook .social-icon {
+    background: rgba(255,255,255,0.2);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Twitter 스타일 */
+.social-btn.twitter {
+    background: linear-gradient(135deg, #000000, #333333);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.social-btn.twitter:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Instagram 스타일 */
+.social-btn.instagram {
+    background: linear-gradient(135deg, #E4405F, #FCCC63, #833AB4);
+    color: white;
+    box-shadow: 0 4px 15px rgba(228, 64, 95, 0.3);
+}
+
+.social-btn.instagram:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(228, 64, 95, 0.4);
+}
+
+/* YouTube 스타일 */
+.social-btn.youtube {
+    background: linear-gradient(135deg, #FF0000, #FF4444);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+}
+
+.social-btn.youtube:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
+}
+
+.social-btn.youtube .social-icon {
+    background: rgba(255,255,255,0.2);
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+/* 다크모드에서 소셜 버튼 조정 */
+body.dark-mode .social-btn {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .social-btn:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+}
+
+/* 브랜드 섹션 */
+.brand-section {
+    margin-bottom: 1.5rem;
+}
+
+/* 타이틀 */
+.footer-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.brand-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-right: 0.2rem;
+}
+
+.search-icon {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    animation: searchGlow 3s ease-in-out infinite;
+}
+
+.search-circle {
+    width: 16px;
+    height: 16px;
+    border: 2.5px solid;
+    border-image: linear-gradient(135deg, var(--primary-blue), var(--light-blue), #00D4FF) 1;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+    box-shadow: 
+        0 0 10px rgba(135, 206, 235, 0.3),
+        inset 0 0 10px rgba(135, 206, 235, 0.1);
+}
+
+.search-handle {
+    width: 8px;
+    height: 2.5px;
+    background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    border-radius: 2px;
+    transform: rotate(45deg);
+    box-shadow: 0 0 6px rgba(135, 206, 235, 0.4);
+}
+
+@keyframes searchGlow {
+    0%, 100% { 
+        filter: drop-shadow(0 0 8px rgba(135, 206, 235, 0.4));
+        transform: scale(1);
+    }
+    50% { 
+        filter: drop-shadow(0 0 12px rgba(135, 206, 235, 0.6));
+        transform: scale(1.05);
+    }
+}
+
+body.dark-mode .search-circle {
+    border-image: linear-gradient(135deg, #90CDF4, #87CEEB, #00D4FF) 1;
+    box-shadow: 
+        0 0 10px rgba(144, 205, 244, 0.4),
+        inset 0 0 10px rgba(144, 205, 244, 0.1);
+}
+
+body.dark-mode .search-handle {
+    background: linear-gradient(135deg, #90CDF4, #87CEEB);
+    box-shadow: 0 0 6px rgba(144, 205, 244, 0.5);
+}
+
+body.dark-mode .search-icon {
+    animation: searchGlowDark 3s ease-in-out infinite;
+}
+
+@keyframes searchGlowDark {
+    0%, 100% { 
+        filter: drop-shadow(0 0 8px rgba(144, 205, 244, 0.5));
+        transform: scale(1);
+    }
+    50% { 
+        filter: drop-shadow(0 0 12px rgba(144, 205, 244, 0.7));
+        transform: scale(1.05);
+    }
+}
+
+.brand-text {
+    background: linear-gradient(135deg, var(--primary-blue), var(--light-blue), #00D4FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+.brand-text::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--light-blue));
+    border-radius: 1px;
+    opacity: 0.6;
+}
+
+.brand-accent {
+    color: var(--light-blue);
+    font-size: 2.2rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+.brand-tagline {
+    margin-left: 2.3rem;
+    margin-top: -0.3rem;
+}
+
+.tagline-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    font-style: italic;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.tagline-text::before {
+    content: '';
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 1px;
+    background: var(--light-blue);
+}
+
+body.dark-mode .tagline-text {
+    color: rgba(226, 232, 240, 0.8);
+}
+
+/* 설명 */
+.footer-description {
+    color: rgb(255, 255, 255);
+    line-height: 1.6;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode .footer-description {
+    color: rgba(226, 232, 240, 0.9);
+}
+
+.footer-subtitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--light-blue);
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode .footer-subtitle {
+    color: #90CDF4;
+}
+
+/* 링크 */
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-link {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .footer-link {
+    color: rgba(226, 232, 240, 0.7);
+}
+
+.footer-link:hover {
+    color: var(--primary-blue);
+    text-decoration: underline;
+}
+
+body.dark-mode .footer-link:hover {
+    color: #90CDF4;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(135, 206, 235, 0.2);
+    padding-top: 1.5rem;
+    text-align: center;
+    transition: border-color 0.3s ease;
+}
+
+body.dark-mode .footer-bottom {
+    border-top-color: rgba(144, 205, 244, 0.3);
+}
+
+/* 저작권 */
+.copyright {
+    color:rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode .copyright {
+    color: rgba(226, 232, 240, 0.8);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        padding: 0 1rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
+    
+    .footer-title {
+        font-size: 1.5rem;
+    }
+    
+    .footer-social {
+        align-items: center;
+        gap: 0.6rem;
+    }
+    
+    .social-row {
+        justify-content: center;
+        gap: 0.8rem;
+    }
+    
+    .social-btn {
+        min-width: 100px;
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .social-label {
+        font-size: 0.75rem;
+    }
+    
+    .social-icon {
+        font-size: 1rem;
+    }
+    
+    .footer-title {
+        font-size: 1.6rem;
+        justify-content: center;
+    }
+    
+    .brand-tagline {
+        text-align: center;
+        margin-left: 0;
+    }
+    
+    .tagline-text::before {
+        display: none;
+    }
+}

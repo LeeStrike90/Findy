@@ -1,0 +1,295 @@
+/* ==============================================
+   왼쪽 사이드바 스타일 - 한겨레 스타일 단순 버전
+   수정사항:
+   - 고정 높이 500px 설정 (오른쪽 사이드바와 동일)
+   - Flexbox 레이아웃으로 변경
+   - 스크롤 기능 추가
+   - 반응형 높이 조정
+   - 다크모드 지원 추가
+   ============================================== */
+  
+.left-sidebar-container {
+  position: fixed;
+  left: 2rem;
+  top: 80%; /* 헤더 아래부터 시작 */
+  bottom: 20px; /* 하단 여백 */
+  width: 280px;
+  transform: translateY(-50%);
+  z-index: 100;
+  height: 435px; /* ← 이 줄 추가 */
+  transition: transform 0.2s ease;
+}
+
+.left-sidebar {
+  width: 100%;
+  height: 100%; /* 컨테이너 높이에 맞춤 */
+  background: #fafafa;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  max-height: 435px; /* ← 이 줄 추가 */
+  /* border: 1px solid #e8e8e8; */
+  overflow: hidden;
+  display: flex; /* Flexbox 레이아웃 적용 */
+  flex-direction: column;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 다크모드 사이드바 스타일 */
+body.dark-mode .left-sidebar {
+  background: #2D3748;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-section {
+  padding: 1.5rem;
+  flex: 1; /* 남은 공간 차지 */
+  overflow: hidden; /* 넘치는 콘텐츠 숨김 */
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-section:not(:last-child) {
+  border-bottom: 1px solid #f0f0f0;
+  transition: border-color 0.3s ease;
+}
+
+body.dark-mode .sidebar-section:not(:last-child) {
+  border-bottom-color: #4A5568;
+}
+
+.sidebar-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #1a73e8;
+  flex-shrink: 0; /* 크기 고정 */
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+body.dark-mode .sidebar-title {
+  color: #E2E8F0;
+  border-bottom-color: #90CDF4;
+}
+
+/* 인기기사 스타일 - 스크롤 기능 추가 */
+.popular-articles {
+  flex: 1; /* 남은 공간 차지 */
+  overflow-y: auto; /* 세로 스크롤 활성화 */
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding-right: 0.5rem; /* 스크롤바 공간 확보 */
+  margin-right: -0.5rem;
+}
+
+.popular-article-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.popular-article-item:hover {
+  background: #f8f9ff;
+  border-color: #e8e8e8;
+}
+
+body.dark-mode .popular-article-item:hover {
+  background: #4A5568;
+  border-color: #718096;
+}
+
+.article-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.article-headline {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #333;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.3s ease;
+}
+
+body.dark-mode .article-headline {
+  color: #E2E8F0;
+}
+
+/* 새로운 언론사 컨테이너 스타일 */
+.article-source-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.source-logo {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.article-source {
+  font-weight: 500;
+  color: #1a73e8;
+  font-size: 0.75rem;
+  transition: color 0.3s ease;
+}
+
+body.dark-mode .article-source {
+  color: #90CDF4;
+}
+
+/* 인기검색어 스타일 (현재 사용하지 않음) */
+.popular-searches {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.popular-search-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.popular-search-item:hover {
+  background: #f8f9ff;
+}
+
+body.dark-mode .popular-search-item:hover {
+  background: #4A5568;
+}
+
+.search-rank {
+  background: #ff6b6b;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.search-term {
+  font-size: 0.85rem;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+body.dark-mode .search-term {
+  color: #E2E8F0;
+}
+
+/* 로딩 상태 */
+.sidebar-loading {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+body.dark-mode .sidebar-loading {
+  color: #A0AEC0;
+}
+
+/* 스크롤바 스타일 - 인기기사 영역에만 적용 */
+.popular-articles::-webkit-scrollbar {
+  width: 4px;
+}
+
+.popular-articles::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 2px;
+}
+
+body.dark-mode .popular-articles::-webkit-scrollbar-track {
+  background: #4A5568;
+}
+
+.popular-articles::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 2px;
+}
+
+.popular-articles::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+body.dark-mode .popular-articles::-webkit-scrollbar-thumb {
+  background: #718096;
+}
+
+body.dark-mode .popular-articles::-webkit-scrollbar-thumb:hover {
+  background: #A0AEC0;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1200px) {
+  .left-sidebar-container {
+    left: 1rem;
+    width: 250px;
+    top: 100px;
+    bottom: 15px;
+  }
+}
+
+/* 태블릿 및 모바일에서 사이드바 완전히 숨김 */
+@media (max-width: 1024px) {
+  .left-sidebar-container {
+    display: none !important; /* 태블릿 이하에서 완전히 숨김 */
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+}
+
+/* 모바일 환경에서 추가 보장 */
+@media (max-width: 768px) {
+  .left-sidebar-container {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    left: -9999px !important;
+  }
+}
+
+/* 작은 모바일 화면에서도 확실히 숨김 */
+@media (max-width: 480px) {
+  .left-sidebar-container {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    left: -9999px !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+} 

@@ -1,0 +1,114 @@
+/* 이용약관 페이지 스타일 */
+.terms-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.terms-content {
+  max-width: 800px;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  padding: 2.5rem;
+  margin: 0 1rem;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 다크모드 - 컨테이너 */
+body.dark-mode .terms-content {
+  background-color: #2D3748;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  color: #E2E8F0;
+}
+
+.terms-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+/* 다크모드 - 제목 */
+body.dark-mode .terms-title {
+  color: #E2E8F0;
+}
+
+.terms-date {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 2rem;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+/* 다크모드 - 날짜 */
+body.dark-mode .terms-date {
+  color: #A0AEC0;
+}
+
+.terms-section {
+  margin-bottom: 2rem;
+}
+
+.terms-section-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1a73e8;
+  margin-bottom: 1rem;
+  transition: color 0.3s ease;
+}
+
+/* 다크모드 - 섹션 제목 */
+body.dark-mode .terms-section-title {
+  color: #90CDF4;
+}
+
+.terms-section p {
+  margin-bottom: 0.8rem;
+  line-height: 1.6;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+/* 다크모드 - 본문 */
+body.dark-mode .terms-section p {
+  color: #E2E8F0;
+}
+
+.terms-list {
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.terms-list li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+/* 다크모드 - 리스트 아이템 */
+body.dark-mode .terms-list li {
+  color: #E2E8F0;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .terms-content {
+    padding: 1.5rem;
+  }
+
+  .terms-title {
+    font-size: 1.5rem;
+  }
+
+  .terms-section-title {
+    font-size: 1.2rem;
+  }
+} 

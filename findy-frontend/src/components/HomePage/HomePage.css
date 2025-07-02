@@ -1,0 +1,248 @@
+/* ==============================================
+   홈페이지 메인 콘텐츠 및 뉴스 관련 스타일
+   ============================================== */
+
+.home-page {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* 메인 콘텐츠 */
+.main-content {
+    max-width: 65%;
+    margin: 0 auto;
+    padding: 2rem;
+    margin-top: 1rem;
+}
+
+.content-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.content-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.content-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+/* 홈페이지 인기 검색어 */
+.popular-searches-home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.popular-label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.popular-tag-home {
+    background: linear-gradient(45deg, rgba(107, 115, 255, 0.1), rgba(135, 206, 235, 0.1));
+    color: var(--primary-blue);
+    border: 1px solid rgba(135, 206, 235, 0.3);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popular-tag-home:hover {
+    background: linear-gradient(45deg, var(--primary-blue), var(--light-blue));
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px var(--shadow-medium);
+}
+
+/* 언론사별 카테고리 섹션 */
+.news-sources-section {
+    /* margin-top: 2rem; */
+    padding: 1rem 0 1rem 0;
+    /* border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee; */
+}
+
+.sources-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.2rem;
+    text-align: center;
+}
+
+.news-sources-grid {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.source-btn {
+    background: transparent;
+    color: #555;
+    border: 1px solid #e8e8e8;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.source-btn:hover {
+    color: #1a73e8;
+    border-color: #1a73e8;
+    background: #f8f9ff;
+}
+
+.source-btn.active {
+    color: #1a73e8;
+    font-weight: 600;
+    border-color: #1a73e8;
+    background: #f8f9ff;
+}
+
+.source-btn.active:after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #1a73e8;
+    border-radius: 2px 2px 0 0;
+}
+
+/* 뉴스 래퍼 */
+.news-wrapper {
+    display: block;
+    margin-top: 2rem;
+    position: relative;
+}
+
+/* 상단 뉴스 레이아웃 (왼쪽 메인 + 오른쪽 사이드) */
+.top-news-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.2rem;
+    margin-bottom: 3rem;
+    align-items: start;
+}
+
+/* 사이드 뉴스 컨테이너 (오른쪽 작은 카드들) */
+.side-news-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    height: fit-content;
+    justify-content: flex-start;
+}
+
+/* 하단 뉴스 섹션 */
+.bottom-news-section {
+    margin-top: 2rem;
+}
+
+.bottom-news-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e8e8e8;
+}
+
+/* 하단 뉴스 그리드 (6개) */
+.bottom-news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 100%;
+}
+
+
+
+/* 로딩 및 에러 상태 */
+.no-results {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-secondary);
+}
+
+.no-results h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+    .top-news-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .side-news-container {
+        height: fit-content;
+    }
+
+    .bottom-news-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding: 1rem;
+        max-width: 95%;
+    }
+
+    .top-news-layout {
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .side-news-container {
+        gap: 0.8rem;
+        height: fit-content;
+    }
+
+    .bottom-news-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .bottom-news-title {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+
+    .popular-searches-home {
+        gap: 0.5rem;
+    }
+
+    .popular-tag-home {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.8rem;
+    }
+} 
