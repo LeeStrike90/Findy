@@ -13,10 +13,11 @@
 
 | 기능명 | 설명 | 기여도 |
 |--------|------|--------|
-| **다크모드** | 뉴스 검색 화면에서 다크모드를 지원하여 사용자 편의성 향상 | 상 ⭐ |
-| **다국어 지원** | 메뉴 및 콘텐츠를 다국어로 설정 가능, 글로벌 사용자 편의성 제공 | 상 ⭐ |
+| **다크모드** | 뉴스 검색 화면에서 다크모드를 지원하여 사용자 편의성 향상 | 하 ☆ |
+| **다국어 지원** | 메뉴 및 콘텐츠를 다국어로 설정 가능, 글로벌 사용자 편의성 제공 | 하 ☆ |
 | **웹 크롤러 기반 뉴스 수집** | Python 로봇으로 뉴스 사이트에서 기사 주기적 수집 | 상 ⭐ |
-| **형태소 분석 기반 키워드 처리** | Komoran, TF-IDF, TextRank, nori로 키워드 추출 및 검색 | 상 ⭐ |
+| **뉴스 데이터 실시간 동기화** | 수집한 데이터 Monstache를 사용한 실시간 데이터 동기화 | 상 ⭐ |
+| **형태소 분석 기반 키워드 처리** | Komoran, TF-IDF, TextRank, Nori로 키워드 추출 및 검색 | 상 ⭐ |
 | **자동완성 기능** | 검색어 입력 시 실시간으로 관련 키워드 추천 | 상 ⭐ |
 | **많이 본 기사 목록** | 사용자 열람 기준으로 인기 뉴스 목록 제공 (00:00 초기화) | 상 ⭐ |
 
@@ -25,8 +26,8 @@
 | 기능명 | 설명 | 진행 상황 |
 |--------|------|-----------|
 | **모바일지원** | 분석된 뉴스 데이터를 빠르게 검색할 수 있도록 색인 처리 | 중 ★ |
-| **인기 키워드 트렌드 차트** | 현재 시점 기준 인기 키워드 시각화 | 중 ★ |
-| **개인화 뉴스 추천** | 사용자 검색 이력을 바탕으로 맞춤형 뉴스 추천 제공 | 하 ☆ |
+| **개인화 뉴스 추천** | 사용자 검색 이력을 바탕으로 맞춤형 뉴스 추천 제공 |
+| **인기 키워드 트렌드 차트** | 현재 시점 기준 인기 키워드 시각화 |
 
 
 ---
@@ -37,8 +38,7 @@
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white" height="25" /> <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white" height="25" /> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black" height="25" /> <img src="https://img.shields.io/badge/React--61DAFB?style=flat&logo=react" height="25" />
 
 - 🔧 Backend<br>
-<img src="https://img.shields.io/badge/Java-17-007396?style=flat&logo=java&logoColor=white" height="25" /> <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat&logo=springboot&logoColor=white" height="25" />
-<img src="https://img.shields.io/badge/AJAX-0054A6?style=flat&logo=code&logoColor=white" height="25" /> <img src="https://img.shields.io/badge/Fetch-00A9E0?style=flat&logo=javascript&logoColor=white" height="25" />
+<img src="https://img.shields.io/badge/Java-17-007396?style=flat&logo=java&logoColor=white" height="25" /> <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat&logo=springboot&logoColor=white" height="25" /> <img src="https://img.shields.io/badge/Fetch-00A9E0?style=flat&logo=javascript&logoColor=white" height="25" />
 
 - 🔍 수집 및 처리 <br>
    <details>
@@ -101,3 +101,34 @@ Findy-main/
 
 ## Elasticsearch
 <img src="Elasticsearch.png" alt="Elasticsearch"/>
+
+
+## 화면 설명
+
+### 구현기능 설명
+
+- 메인 페이지 <br><br>
+   <img src="README_img/main_img.png"/>
+
+- 다크모드 <br><br>
+   <img src="README_img/dark_img.png"/>
+
+- 좌/우 사이드 <br><br>
+<img src="README_img/left_img.png"/> <img src="README_img/right_img.png"/>
+
+- 언론사 선택 <br><br>
+   <img src="README_img/media_img.png"/>
+
+- 카테고리별 뉴스 <br><br>
+   <img src="README_img/category_img.png"/>
+
+- 자동완성 기능 <br><br>
+   <img src="README_img/auto_img.png"/>
+
+- ai 검색 결과 <br><br>
+   <img src="README_img/ai_img.png"/>
+
+- 뉴스 더보기 클릭 <br><br>
+   <img src="README_img/news_img.png"/>
+
+
