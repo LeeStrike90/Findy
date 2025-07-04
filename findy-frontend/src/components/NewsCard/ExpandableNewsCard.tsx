@@ -103,7 +103,7 @@ const ExpandableNewsCard: React.FC<ExpandableNewsCardProps> = ({
       onToggle(article.id);
       // 클릭시 백엔드에 요청
       try {
-        await fetch("https://localhost:8485/api/news/click", {
+        await fetch("http://localhost:8485/api/news/click", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

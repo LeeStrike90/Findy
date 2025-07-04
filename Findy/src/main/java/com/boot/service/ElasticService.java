@@ -64,51 +64,78 @@ public class ElasticService
     /**
      * 뉴스 검색 및 AI 요약 포함 결과 반환
      */
+
     public Map<String, Object> searchWithPagination(String keyword, String category, String source, int page, int size, boolean isResearch) throws IOException
     {
-//        SearchRequest.Builder builder = new SearchRequest.Builder().index("newsdata.newsdata");
         SearchRequest.Builder builder = new SearchRequest.Builder()
                 .index("newsdata.newsdata")
-                .trackTotalHits(TrackHits.of(t -> t.enabled(true))); // ✅ 이렇게 수정
-        // --- 쿼리 조건 설정 ---
-        List<Query> mustQueries = new ArrayList<>();
+                .trackTotalHits(t -> t.enabled(true)); // 전체 검색 결과 수 추적
+
         String aiSummary = "";
+        String originalKeyword = keyword;
+        String convertedKeyword = "";
 
-        if (keyword != null && !keyword.isBlank())
-        {
-            aiSummary = Gemini(keyword);
-            mustQueries.add(Query.of(q -> q
-                    .multiMatch(mm -> mm
-                            .fields("headline", "content")
-                            .query(keyword)
-                    )
-            ));
-        }
+        // 🔍 검색어가 존재할 경우 (AI 요약 및 오타 보정 포함)
+        if (keyword != null && !keyword.isBlank()) {
+            aiSummary = Gemini(keyword); // Gemini AI 요약 결과 생성
 
+            if (!isResearch) {
+                boolean containsHangul = keyword.matches(".*[가-힣]+.*");
+                boolean isEnglishOnly = keyword.matches("^[A-Za-z]+$");
 
-        if (category != null && !category.isBlank() && !category.equals("전체"))
-        {
-            mustQueries.add(Query.of(q -> q
-                    .term(t -> t.field("category.keyword").value(category))
-            ));
-        }
+                if (!containsHangul && (!isEnglishOnly || keyword.length() >= 4)) {
+                    String converted = keyboardMapper.convertEngToKor(keyword);
+                    String patched = hangulComposer.combine(converted);
+                    log.info("한영키 변환 => {}", converted);
+                    log.info("한글 패치 => {}", patched);
+                    keyword = patched;
+                    convertedKeyword = patched;
+                }
+            }
 
-        if (source != null && !source.isBlank())
-    {
-        log.info("이것이 출판사"+source);
-        mustQueries.add(Query.of(q -> q
-                .term(t -> t.field("source.keyword").value(source))
-        ));
-    }
+            // 형태소 분석 + 조합어 확장
+            CharSequence normalized = OpenKoreanTextProcessorJava.normalize(keyword);
+            var tokens = OpenKoreanTextProcessorJava.tokenize(normalized);
+            List<String> tokenList = OpenKoreanTextProcessorJava.tokensToJavaStringList(tokens);
+            List<String> combinedtext = new ArrayList<>(tokenList);
 
+            for (int i = 0, n = tokenList.size(); i < n; i++) {
+                int len = 0;
+                var sb = new StringBuilder();
+                for (int j = i; j < n; j++) {
+                    String tok = tokenList.get(j);
+                    if (len + tok.length() > 3) break;
+                    sb.append(tok);
+                    len += tok.length();
+                    if (len >= 2) combinedtext.add(sb.toString());
+                }
+            }
 
+            combinedtext = combinedtext.stream().distinct().toList();
+            log.info("검색에 쓰일 단어 => {}", combinedtext);
 
-        if (!mustQueries.isEmpty()) {
-            builder.query(q -> q.bool(b -> b.must(mustQueries)));
-            // 정렬 필요 시 아래 주석 해제 (단, time 필드가 date 타입일 경우만!)
-            // builder.sort(s -> s.field(f -> f.field("time").order(SortOrder.Desc)));
+            //  검색어 기반 BoolQuery 구성
+            BoolQuery.Builder boolB = new BoolQuery.Builder();
+            for (String term : combinedtext) {
+                boolB.should(s -> s.match(m -> m.field("headline").query(term).fuzziness("0").boost(5.0f)));
+                boolB.should(s -> s.match(m -> m.field("textrank_keywords").query(term).fuzziness("1").boost(3.0f)));
+                boolB.should(s -> s.match(m -> m.field("summary").query(term).fuzziness("1").boost(1.0f)));
+                boolB.should(s -> s.match(m -> m.field("content").query(term).fuzziness("1").boost(0.5f)));
+            }
+
+            // 카테고리 필터
+            if (category != null && !category.isBlank() && !category.equals("전체")) {
+                boolB.filter(f -> f.term(t -> t.field("category.keyword").value(category)));
+            }
+
+            // 출처 필터
+            if (source != null && !source.isBlank()) {
+                boolB.filter(f -> f.term(t -> t.field("source.keyword").value(source)));
+            }
+
+            builder.query(q -> q.bool(boolB.build()));
         } else {
-            // 필터 없을 때만 랜덤 점수 부여
+            //  검색어가 없을 경우: 전체 문서에서 랜덤하게 검색
             builder.query(q -> q
                     .functionScore(fs -> fs
                             .functions(fns -> fns
@@ -116,42 +143,50 @@ public class ElasticService
                             )
                     )
             );
+
+            // 카테고리 필터
+            if (category != null && !category.isBlank() && !category.equals("전체")) {
+                builder.postFilter(f -> f.term(t -> t.field("category.keyword").value(category)));
+            }
+
+            // 출처 필터
+            if (source != null && !source.isBlank()) {
+                builder.postFilter(f -> f.term(t -> t.field("source.keyword").value(source)));
+            }
         }
 
-
-
-
-
-        // 페이징
+        // 페이징 처리
         builder.from(page * size).size(size);
 
-        // 요청 실행
+        // Elasticsearch 요청 실행
         SearchResponse<Map> resp = client.search(builder.build(), Map.class);
         long totalHits = resp.hits().total() != null ? resp.hits().total().value() : 0;
         int totalPages = (int) Math.ceil((double) totalHits / size);
 
-        List<Map<String, Object>> content = resp.hits().hits().stream().map(hit ->
-        {
+        // 결과 변환
+        List<Map<String, Object>> content = resp.hits().hits().stream().map(hit -> {
             Map<String, Object> map = new HashMap<>(hit.source());
             List<String> combined = new ArrayList<>();
             Object textrank = map.get("textrank_keywords");
             Object tfidf = map.get("tfidf_keywords");
-            if (textrank instanceof List<?>)
-                combined.addAll(((List<?>) textrank).stream().map(Object::toString).toList());
-            if (tfidf instanceof List<?>)
-                combined.addAll(((List<?>) tfidf).stream().map(Object::toString).toList());
+            if (textrank instanceof List<?>) combined.addAll(((List<?>) textrank).stream().map(Object::toString).toList());
+            if (tfidf instanceof List<?>) combined.addAll(((List<?>) tfidf).stream().map(Object::toString).toList());
             map.put("keywords", combined.stream().distinct().toList());
             return map;
         }).toList();
 
+        //  null-safe 결과 반환
         return Map.of(
                 "content", content,
                 "totalElements", totalHits,
                 "totalPages", totalPages,
                 "currentPage", page,
-                "aiSummary", aiSummary
+                "aiSummary", aiSummary != null ? aiSummary : "",
+                "originalKeyword", originalKeyword != null ? originalKeyword : "",
+                "convertedKeyword", !convertedKeyword.isBlank() ? convertedKeyword : (originalKeyword != null ? originalKeyword : "")
         );
     }
+
 
 
     private String Gemini(String keyword)

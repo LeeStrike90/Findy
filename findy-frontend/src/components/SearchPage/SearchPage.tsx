@@ -139,7 +139,7 @@ const SearchPage: React.FC = () => {
      }
 
      // 통합된 검색 엔드포인트 사용
-     const url = `https://localhost:8485/api/search?${params.toString()}`;
+     const url = `http://localhost:8485/api/search?${params.toString()}`;
       
       
       const response = await fetch(url);
@@ -260,7 +260,7 @@ const SearchPage: React.FC = () => {
     if (article.url && article.url !== '#') {
       // 클릭시 백엔드에 요청
       try {
-        await fetch("https://localhost:8485/api/news/click", {
+        await fetch("http://localhost:8485/api/news/click", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

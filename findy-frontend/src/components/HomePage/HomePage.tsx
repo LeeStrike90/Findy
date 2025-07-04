@@ -52,7 +52,7 @@ const HomePage: React.FC = () => {
       setIsLoading(true);
 
       // 백엔드에 size=10으로 요청 → 최신 뉴스 10건
-      const response = await fetch("https://localhost:8485/api/search?page=0&size=10");
+      const response = await fetch("http://localhost:8485/api/search?page=0&size=10");
       if (!response.ok) {
         throw new Error(`API 호출 실패: ${response.status}`);
       }
@@ -88,7 +88,7 @@ const HomePage: React.FC = () => {
   const handleNewsClick = async (article: NewsArticle) => {
     if (article.url && article.url !== '#') {
       try {
-        await fetch("https://localhost:8485/api/news/click", {
+        await fetch("http://localhost:8485/api/news/click", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

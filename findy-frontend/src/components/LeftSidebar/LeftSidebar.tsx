@@ -83,7 +83,7 @@ const LeftSidebar: React.FC = () => {
       console.log("Top5 기사 로딩 시작...");
       setIsLoading(true);
       // Top5 기사 API 호출로 변경
-      const response = await fetch("https://localhost:8485/api/news/top5");
+      const response = await fetch("http://localhost:8485/api/news/top5");
       
       if (response.ok) {
         const rawData = await response.json();
@@ -160,7 +160,7 @@ const LeftSidebar: React.FC = () => {
 
     if (article.url && article.url !== '#') {
       try {
-        await fetch("https://localhost:8485/api/news/click", {
+        await fetch("http://localhost:8485/api/news/click", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

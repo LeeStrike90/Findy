@@ -1,15 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a28b2c1-b6d2-42bf-9abe-60c4918a86e3" name="변경" comment="" />
+    <list default="true" id="3a28b2c1-b6d2-42bf-9abe-60c4918a86e3" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/../Findy/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Findy/.gradle/8.14/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Findy/.gradle/8.14/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Findy/.gradle/8.14/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Findy/.gradle/8.14/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Findy/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Findy/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Findy/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Findy/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Findy/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Findy/.idea/material_theme_project_new.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Findy/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Findy/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Findy/build/reports/problems/problems-report.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Findy/build/reports/problems/problems-report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Findy/src/main/java/com/boot/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Findy/src/main/java/com/boot/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Findy/src/main/java/com/boot/service/ElasticService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Findy/src/main/java/com/boot/service/ElasticService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HomePage/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomePage/HomePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LeftSidebar/LeftSidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LeftSidebar/LeftSidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LeftSidebar/LeftSidebarWrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LeftSidebar/LeftSidebarWrapper.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NewsCard/ExpandableNewsCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NewsCard/ExpandableNewsCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SearchPage/SearchPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchPage/SearchPage.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2ytrYZPg9JeOn9kjG6h4EfPjTch" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -19,9 +43,17 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/develope/Findy/findy-frontend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\develope\\ideaIU-2025.1.2.win\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "ts.external.directory.path": "C:\\develope\\Findy\\findy-frontend\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -41,6 +73,8 @@
       <option name="presentableId" value="Default" />
       <updated>1750664758539</updated>
       <workItem from="1750664760411" duration="173000" />
+      <workItem from="1751443357250" duration="1599000" />
+      <workItem from="1751514268525" duration="1595000" />
     </task>
     <servers />
   </component>
