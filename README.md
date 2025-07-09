@@ -1,3 +1,4 @@
+
 # 🕵️‍♂️ Findy: 뉴스 검색 엔진
 
 <img src="Findy_logo_white.png" alt="Findy_white 로고" width="200" color="white"/> <img src="Findy_logo_black.png" alt="Findy 로고" width="200"/>
@@ -26,8 +27,8 @@
 | 기능명 | 설명 | 진행 상황 |
 |--------|------|-----------|
 | **모바일지원** | 분석된 뉴스 데이터를 빠르게 검색할 수 있도록 색인 처리 | 중 ★ |
-| **개인화 뉴스 추천** | 사용자 검색 이력을 바탕으로 맞춤형 뉴스 추천 제공 |
-| **인기 키워드 트렌드 차트** | 현재 시점 기준 인기 키워드 시각화 |
+| **개인화 뉴스 추천** | 사용자 검색 이력을 바탕으로 맞춤형 뉴스 추천 제공 | 하 ☆ |
+| **인기 키워드 트렌드 차트** | 현재 시점 기준 인기 키워드 시각화 | 중 ★ |
 
 
 ---
@@ -105,30 +106,117 @@ Findy-main/
 
 ## 화면 설명
 
-### 구현기능 설명
+### 📰 당일 뉴스 랜덤 셀렉션 (메인 페이지) <br><br>
+   <img src="README_img/main_img.png"/><br><br>
 
-- 메인 페이지 <br><br>
-   <img src="README_img/main_img.png"/>
+   🔄 사용자에게 다양한 새로운 뉴스 제공!<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- 페이지를 새로 고침할 때마다 기사 조합이 바뀌어, 같은 뉴스 페이지라도 늘 새로운 첫인상을 경험할 수 있습니다.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- 수많은 기사중, 오늘 뉴스들로만 쏙쏙 골라주는 스마트한 메인입니다.<br><br><br>
 
-- 다크모드 <br><br>
-   <img src="README_img/dark_img.png"/>
+### 🌙 다크모드 <br><br>
+   <img src="README_img/dark_img.png"/><br><br>
 
-- 좌/우 사이드 <br><br>
-<img src="README_img/left_img.png"/> <img src="README_img/right_img.png"/>
+   👀 사용자의 눈을 보호하고, 세련된 사용자 경험을 제공!<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- 단순한 색상 반전이 아닌, 전체 UI 전반에 걸쳐 일관된 스타일과 분위기를 유지하로고 설계되었습니다.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- 로컬 스토리지(LocalStorage)를 통해 해당설정이 저장됩니다.<br><br><br>
+   
 
-- 언론사 선택 <br><br>
-   <img src="README_img/media_img.png"/>
+### 🧭사이드 위젯기능 (좌/우 사이드) <br><br>
+   <img src="README_img/left_img.png"/> <img src="README_img/right_img.png"/><br><br>
+  
+   📈 왼쪽 사이드 - 실시간 TOP 5 뉴스!<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- 당일 뉴스중 가장 조회수가 높은 기사 5개를 실시간으로 집계해 보여줍니다.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- 매일 00:00 기준으로 초기화 되어, 새로운 하루의 인기 기사를 제공합니다.<br><br>
+   🗞 오른쪽 사이드 - 언론사별 뉴스 보기!
+&nbsp;&nbsp;&nbsp;&nbsp;- Findy가 수집한 다양한 언론사 목록이 표시됩니다.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- 원하는 언론사를 클릭하면, 해당 언론사의 전체 뉴스 기사 목록이 화면에 출력됩니다.<br><br><br>
 
-- 카테고리별 뉴스 <br><br>
-   <img src="README_img/category_img.png"/>
+### 🗂️카테고리별 뉴스 <br><br>
+   <img src="README_img/category_img.png"/><br><br>
 
-- 자동완성 기능 <br><br>
-   <img src="README_img/auto_img.png"/>
+   🔍 검색어 입력 전, 카테고리 선택!<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- 검색어 입력 전 카테고리를 클릭하면, 해당 카테고리에 속한 뉴스 기사들만 선별하여 보여줍니다.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- 카테고리를 선택하고 검색어 입력하여 검색하면 해당 카테고리 안에서 검색이 가능합니다.<br><br><br>
 
-- ai 검색 결과 <br><br>
-   <img src="README_img/ai_img.png"/>
+### ✨실시간 자동완성 기능 <br><br>
+   <img src="README_img/auto_img.png"/><br><br>
 
-- 뉴스 더보기 클릭 <br><br>
-   <img src="README_img/news_img.png"/>
+   💡 실시간 자동완성 추천!<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- 뉴스 수집시 추출괸 수천 개의 키워드가 자동완성의 기반이 되며, 입력한 문자열과 가장 유사한 키워드들을 우선 순위로 정렬하여 하단에 실시간으로 보여줍니다.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- 검색어의 오타, 유사어, 부분 입력에도 대응할 수 있어, 사용자는 더 적은 입력으로 더 정확한 결과에 도달할 수 있습니다.<br><br><br>
+
+### 🤖AI 검색어 설명 기능 <br><br>
+   <img src="README_img/ai_img.png"/><br><br>
+
+   📚 내가 검색하는건 무엇일까!<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- 검색어를 검색하면 검색어 관련 뉴스 기사만 보여주는게 아니라 검색어가 뜻하는 바를 AI가 요약해서 사용자에게 먼저 보여줍니다.<br><br><br>
+
+### 📎뉴스 더보기 기능 <br><br>
+   <img src="README_img/news_img.png"/><br><br>
+
+   🔽 자세하게 보기!<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- 사용자가 "뉴스 더보기" 버튼을 클릭하면 해당 기사를 더 자세하게 볼 수 있습니다.<br><br><br>
 
 
+   <details>
+     <summary>### 🚀 실행하기 </summary>
+     <pre>
+## 사전 요구사항
+- Java 17+
+- Node.js 16+
+- Python 3.8+
+- MongoDB 4.4+
+
+## 의존성 설치
+**Python 크롤러:**
+```bash
+cd findy-crawler
+pip install -r requirements.txt
+```
+
+## 웹 크롤링 관련
+requests>=2.25.0
+beautifulsoup4>=4.9.0
+selenium>=4.0.0
+lxml>=4.6.0
+
+## 데이터베이스 연결
+pymongo>=4.0.0
+
+## 텍스트 처리 및 분석 (기본 패키지만)
+konlpy==0.6.0  
+scikit-learn==1.3.2  
+
+## 웹 서버 (API 제공용)
+fastapi>=0.68.0
+uvicorn>=0.15.0
+
+## 기타 유틸리티
+python-dotenv>=0.19.0
+schedule>=1.1.0 
+</details>
+
+**React 프론트엔드**
+```bash
+cd findy-frontend
+npm install
+```
+**백엔드**
+1. **MongoDB, Elasticsearch, Monstache시작**
+2. **백엔드 실행:**
+   ```bash
+   cd Findy
+   ./gradlew bootRun
+   ```
+3. **프론트엔드 실행:**
+   ```bash
+   cd findy-frontend
+   npm start
+   ```
+4. **크롤러 실행 (선택사항):**
+   ```bash
+   cd findy-crawler
+   python main.py
+   ```
+  </pre>
+</details>
